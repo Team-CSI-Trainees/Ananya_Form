@@ -1,0 +1,137 @@
+<html>
+ <head> 
+<style>
+     body{
+        background: linear-gradient(to bottom, #cc00cc 0%, #99ccff 100%);
+	}
+		
+	.btn1{
+	   border-radius:0.6rem;
+	   width:6rem;
+	   height:1.8rem;
+	   font-size:1.5rem;
+	   margin:1rem 1rem;
+	}
+	h1{
+	   padding-top:1.5rem;
+	}
+	.formdesign input{
+	   width:50%;
+	}
+    .formerror{
+	   color:red;
+	}
+	.form-box{
+	   margin:2rem;
+	   box-shadow:0px 3px 10px;
+	   border-radius:1rem;
+	   width:40%;
+	   background-color:#FFF9D1;
+	   padding:1rem;
+	   font-size:1.5rem;
+	}
+	   
+</style>  
+</head>
+<body>
+<center>
+    <h1 > REGISTRATION FORM </h1> 
+
+	<form class="form-box" action="/myaction.php" name="myForm" onsubmit="return validateForm()" method="post">
+	
+	<div class="formdesign" id="name">
+        <label for="name">Username:</label>
+	    <input type="text" name="fname" required /></br><span class="formerror"></span></br>
+	</div>
+	<div class="formdesign" id="pass">
+	    <label style="bold" for="password">Password:</label>
+	    <input type="password" name="fpass" required /></br><span class="formerror"></span></br>
+	</div>
+	<div class="formdesign" id="cpass">
+	    <label for="confirm password">Confirm Password:</label>
+	    <input type="password" name="fcpass" required /></br><span class="formerror"></span></br>
+	</div>
+	<div class="formdesign" id="phone">
+	    <label for="phone number">Phone Number:</label>
+	    <input type="text" name="fphone" required /></br><span class="formerror"></span></br>
+	</div>
+	<div class="formdesign" id="email">
+	    <label for="e-mail id">E-mail id</label>
+	    <input type="e-mail" name="femail" required /></br><span class="formerror"></span></br>
+	</div>
+	
+	<label for="gender">Gender:</label>
+	<input id="I1" type="radio" name="i">female</input>
+	<input id="I1" type="radio" name="i">male</input></br></br>
+	<label for="date">Date of Birth</label>
+	<input type="date" max="2002-02-28"/></br></br>
+	<label for="languages">Languages known:</label></br>
+	<input type="checkbox">English</input>
+	<input type="checkbox">Telugu</input>
+	<input type="checkbox">Hindi</input>
+	<input type="checkbox">Tamil</input></br></br>
+	<label for="continent">Choose your continent:</label>
+	<select> <option>Africa</option>
+	         <option>Antarctica</option>
+			 <option>Asia</option>
+			 <option>Australia</option>
+			 <option>Europe</option>
+			 <option>North America</option>
+			 <option>South America</option>
+	</select></br>
+	<input class="btn1" type="submit" value="Submit"/>
+	
+	</form>
+</center>
+<script>
+function clearErrors(){
+    errors = document.getElementsByClassName('formerror');
+	for(let item of errors)
+	{
+	    item.innerHTML = "";
+	}
+}
+
+function seterror(id, error){
+    element=document.getElementById(id);
+	element.getElementsByClassName('formerror')[0].innerHTML=error;
+}
+
+function validateForm(){
+    var returnval=true;
+	
+    var name=document.forms['myForm']["fname"].value;
+	if(name.length<5){
+	seterror("name","*Length of name is too short!");
+	returnval=false;
+	}
+	var password=document.forms['myForm']["fpass"].value;
+	if(password.length<6){
+	seterror("pass","*Password should contain atleast 6 characters!");
+	returnval=false;
+	}
+	var cpassword=document.forms['myForm']["fcpass"].value;
+	if(cpassword!=password){
+	seterror("cpass","*Password and confirm password should match!");
+	returnval=false;
+	}
+    var phone=document.forms['myForm']["fphone"].value;
+	if(phone.length !=10){
+	seterror("phone","*Phone no. should be of 10 digits!");
+	returnval=false;
+	}
+	
+	var email=document.forms['myForm']["femail"].value;
+	let atpos=email.indexOf("@");
+	let dotpos=email.indexOf(".");
+	
+	if(dotpos-atpos<2){
+	seterror("email","*Enter valid email!");
+	returnval=false;
+	}
+	
+	return returnval;
+}
+</script>
+</body>
+</html>
